@@ -46,8 +46,9 @@ class UsuarioRepositoryTest {
     void elCorreoEsUnico() {
         repositorio.saveAndFlush(new Usuario("luis.perez@alumnos.unex.es", encoder.encode("Clave1234")));
 
-        assertThatThrownBy(() ->
-                repositorio.saveAndFlush(new Usuario("luis.perez@alumnos.unex.es", encoder.encode("Otra12345"))))
+        Usuario duplicado = new Usuario("luis.perez@alumnos.unex.es", encoder.encode("Otra12345"));
+
+        assertThatThrownBy(() -> repositorio.saveAndFlush(duplicado))
                 .isInstanceOf(DataIntegrityViolationException.class);
     }
 }
