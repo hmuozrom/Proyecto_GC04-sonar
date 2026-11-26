@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 /**
  * Usuario de ErasmusNest (TD-01, TK-002).
@@ -34,7 +35,7 @@ public class Usuario {
     private EstadoCuenta estado = EstadoCuenta.NO_VERIFICADA;
 
     @Column(name = "fecha_registro", nullable = false)
-    private LocalDateTime fechaRegistro = LocalDateTime.now();
+    private LocalDateTime fechaRegistro = LocalDateTime.now(ZoneId.systemDefault());
 
     protected Usuario() {
         // Requerido por JPA
