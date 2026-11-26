@@ -36,8 +36,9 @@ class UsuarioRepositoryTest {
         String hash1 = encoder.encode("Erasmus2026");
         String hash2 = encoder.encode("Erasmus2026");
 
-        assertThat(hash1).isNotEqualTo("Erasmus2026");
-        assertThat(hash1).isNotEqualTo(hash2); // la sal hace que cada hash sea distinto
+        assertThat(hash1)
+                .isNotEqualTo("Erasmus2026")
+                .isNotEqualTo(hash2); // la sal hace que cada hash sea distinto
         assertThat(encoder.matches("Erasmus2026", hash1)).isTrue();
     }
 
