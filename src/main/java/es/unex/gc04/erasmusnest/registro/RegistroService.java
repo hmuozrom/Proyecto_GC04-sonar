@@ -24,8 +24,12 @@ public class RegistroService {
     public static final String ERROR_DOMINIO = "Solo se admiten correos institucionales de la UEx";
     public static final String ERROR_NO_COINCIDEN = "Las contraseñas no coinciden";
 
-    /** Un solo @, sin espacios, con algo antes y con un punto en el dominio. */
-    private static final Pattern FORMATO_CORREO = Pattern.compile("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+    /**
+     * Un solo @, sin espacios, con algo antes y con un punto en el dominio.
+     * Cuantificadores posesivos y etiquetas del dominio sin puntos: sin backtracking (java:S8786).
+     */
+    private static final Pattern FORMATO_CORREO =
+            Pattern.compile("^[^@\\s]++@[^@\\s.]++(?:\\.[^@\\s.]++)++$");
 
     private final UsuarioRepository usuarios;
     private final PasswordEncoder encoder;
