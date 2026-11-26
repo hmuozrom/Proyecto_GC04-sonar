@@ -43,7 +43,8 @@ class RegistroControllerTest {
                 new ExtendedModelMap(), redirect);
 
         assertThat(vista).isEqualTo("redirect:/registro/enviado");
-        assertThat(redirect.getFlashAttributes().get("mensaje")).isEqualTo(RegistroService.MENSAJE_GENERICO);
+        assertThat(Map.<String, Object>copyOf(redirect.getFlashAttributes()))
+                .containsEntry("mensaje", RegistroService.MENSAJE_GENERICO);
     }
 
     @Test
